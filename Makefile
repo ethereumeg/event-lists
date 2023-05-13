@@ -3,10 +3,13 @@
 all: test
 
 mod:
-	deno run --allow-read mod.ts
+	deno run --allow-read mod.js
 
 test:
-	deno run --allow-read test.ts
+	deno test --allow-read test.js
+
+test-remote:
+	deno test --allow-read test.js remote=true
 
 fmt:
-	deno fmt *.ts
+	deno fmt *.js

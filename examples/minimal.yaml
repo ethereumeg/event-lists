@@ -1,0 +1,12 @@
+name: Example Event List
+version: 1.0.0
+timestamp: "2023-05-13T23:37:45.505Z"
+events:
+  - id: example-event
+    name: Example Event
+    types: [ conference ]
+    date: "2023-05-14"
+    days: 1
+    place: My Place, Country
+    region: europe
+    country: cz

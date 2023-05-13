@@ -1,0 +1,170 @@
+type: object
+additionalProperties: false
+required:
+  - name
+  - types
+  - date
+  - days
+  - place
+  - region
+  - country
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9-]+$"
+  name:
+    type: string
+  aliases:
+    type: array
+    items:
+      type: string
+  series:
+    type: string
+    pattern: "^[a-z0-9-]+$"
+  family:
+    type: string
+    pattern: "^[a-z0-9-]+$"    
+  types:
+    type: array
+    items:
+      type: string
+      enum:
+        - conference
+        - hackathon
+        - collaborative-week
+  date:
+    type: string
+    pattern: "^\\d{4}(-[\\d\\?]{2}|)(-[\\d\\?]{2}|)$"
+  days:
+    type: number
+  place:
+    type: string
+  region:
+    type: string
+    enum:
+      - europe
+      - asia
+      - north-america
+      - us-ca
+      - latam
+      - africa
+      - australia
+  country:
+    type: string
+    pattern: "^[a-z]{2}$"
+  venues:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+  attendees:
+    type: number
+  attendees_real:
+    type: number
+  host_name:
+    type: string
+  hackathon:
+    type: object
+    additionalProperties: false
+    properties:
+      hackers:
+        type: number
+      hackers_real:
+        type: number
+      hacker_application_platform:
+        type: string
+        enum:
+          - cryptpad
+          - google-forms
+          - typeform
+          - tally
+          - airtable
+          - ethglobal
+          - custom
+      projects:
+        type: number
+      project_submission_platform:
+        type: string
+        enum:
+          - devfolio
+          - taikai
+          - devpost
+          - ethglobal
+          - dorahacks
+          - custom
+      project_submission_url:
+        type: string
+        format: uri
+      prizes_total:
+        type: string
+        pattern: "^[\\d\\.]+ [A-Z]{3}$"
+      prizes:
+        type: array
+        items:
+          type: object
+          additionalProperties: false
+          properties:
+            name:
+              type: string
+            amount:
+              type: string
+              pattern: "^[\\d\\.]+ [A-Z]{3}$"
+      bounties_total:
+        type: string
+        pattern: "^[\\d\\.]+ [A-Z]{3}$"
+      bounties:
+        type: array
+        items:
+          type: object
+          additionalProperties: false
+          properties:
+            name:
+              type: string
+            amount:
+              type: string
+              pattern: "^[\\d\\.]+ [A-Z]{3}$"
+  aftermovie:
+    type: string
+    format: uri
+  links:
+    type: object
+    additionalProperties:
+      type: string
+      format: uri
+  contributors:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        twitter:
+          type: string
+          pattern: "^[a-zA-Z0-9_]{2,15}$"
+        github:
+          type: string
+          pattern: "^[a-zA-Z0-9_-]{2,15}$"
+        image:
+          type: string
+          #format: uri
+        caption:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+              - judge
+              - mentor
+              - speaker
+              - team
+              - advisor
+              - volunteer

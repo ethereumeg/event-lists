@@ -11,16 +11,18 @@ const OUTPUT_EXAMPLES_SUBDIR = "examples";
 
 schema.version = VERSION;
 
-// clear build
-await emptyDir(OUTPUT_DIR);
-
-// schema
-await emptyDir(join(OUTPUT_DIR, OUTPUT_SCHEMA_SUBDIR));
+// functions
 async function $write(key, data, dir = OUTPUT_SCHEMA_SUBDIR) {
   const fn = join(OUTPUT_DIR, dir, key + ".json");
   await Deno.writeTextFile(fn, JSON.stringify(data, null, 2));
   console.log(`File written: ${fn}`);
 }
+
+// clear build
+await emptyDir(OUTPUT_DIR);
+
+// schema
+await emptyDir(join(OUTPUT_DIR, OUTPUT_SCHEMA_SUBDIR));
 await $write("index", schema);
 for (const key in schema.definitions) {
   await $write(key, schema.definitions[key]);

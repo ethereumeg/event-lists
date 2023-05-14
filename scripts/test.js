@@ -4,7 +4,7 @@ import { join } from "https://deno.land/std@0.187.0/path/posix.ts";
 import Ajv from "https://esm.sh/v114/ajv@8.12.0";
 import addFormats from "https://esm.sh/ajv-formats@2.1.1";
 
-import { schema, VERSION } from "../mod.js";
+import { schema, VERSION } from "../mod.ts";
 
 const EXAMPLES_DIR = "./examples";
 

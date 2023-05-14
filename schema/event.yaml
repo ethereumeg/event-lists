@@ -1,4 +1,3 @@
-$id: https://event-lists.ethevents.club/schema/event.json
 type: object
 additionalProperties: false
 required:

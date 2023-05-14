@@ -1,0 +1,65 @@
+name: test_and_deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  test_and_build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      
+      - name: Install deps
+        run: make install
+
+      - name: Test
+        run: make test
+
+      - name: Build
+        run: make build
+
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: dist
+  
+  deploy:
+    needs: test_and_build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+      
+  #docs-rebuid:
+  #  needs: deploy
+  #  runs-on: ubuntu-latest
+  #  environment:
+  #    name: docs-trigger
+  #  steps:
+  #    - name: Trigger Workflow
+  #      uses: actions/github-script@v6
+  #      with:
+  #        github-token: ${{ secrets.PAT_TOKEN }}
+  #        script: |
+  #          github.rest.actions.createWorkflowDispatch({
+  #            owner: 'ethereumeg',
+  #            repo: 'docs',
+  #            workflow_id: 'deploy.yml',
+  #            ref: 'main',
+  #          })

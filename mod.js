@@ -10,14 +10,16 @@ async function $schema(name = "index") {
   return parse(await Deno.readTextFile(join(SCHEMA_DIR, name + ".yaml")));
 }
 
-const schema = await $schema();
-schema.definitions = {};
+const schema = Object.assign({ $id: $schemaUrl() }, await $schema());
 for await (const f of Deno.readDir(SCHEMA_DIR)) {
   const [_, key] = f.name.match(/^(.*)\.yaml$/);
   if (key === "index") {
     continue;
   }
-  schema.definitions[$schemaUrl(key)] = await $schema(key);
+  schema.definitions[key] = Object.assign(
+    { $id: $schemaUrl(key) },
+    await $schema(key),
+  );
 }
 
 export { schema, VERSION };

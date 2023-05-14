@@ -1,4 +1,3 @@
-$id: https://event-lists.ethevents.club/schema/index.json
 type: object
 additionalProperties: false
 properties:
@@ -14,3 +13,4 @@ properties:
     type: array
     items:
       $ref: "https://event-lists.ethevents.club/schema/event.json"
+definitions: {}

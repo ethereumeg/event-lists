@@ -10,6 +10,10 @@ mod:
 
 build:
 	deno run --allow-read --allow-write scripts/build.js
+	@make landing
+
+landing:
+	@echo '<html><head><title>Event Lists</title><meta http-equiv="REFRESH" content="0;url=https://github.com/ethereumeg/event-lists"></head><body>Event Lists - https://github.com/ethereumeg/event-lists</body></html>' > dist/index.html
 
 test:
 	deno test --allow-read scripts/test.js

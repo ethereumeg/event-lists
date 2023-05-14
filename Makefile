@@ -3,7 +3,7 @@
 all: test build
 
 install:
-	deno cache *.js scripts/*.js
+	deno cache *.ts scripts/*.js scripts/*.ts
 
 mod:
 	deno run --allow-read mod.js

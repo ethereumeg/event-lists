@@ -7,15 +7,15 @@ const OUTPUT_DIR = "./dist";
 const SCHEMA_DIR = "schema";
 
 async function $write(key, data) {
-    const fn = join(OUTPUT_DIR, SCHEMA_DIR, key + ".json")
-    await Deno.writeTextFile(fn, JSON.stringify(data, null, 2))
-    console.log(`File written: ${fn}`)
+  const fn = join(OUTPUT_DIR, SCHEMA_DIR, key + ".json");
+  await Deno.writeTextFile(fn, JSON.stringify(data, null, 2));
+  console.log(`File written: ${fn}`);
 }
 
 await emptyDir(OUTPUT_DIR);
 await emptyDir(join(OUTPUT_DIR, SCHEMA_DIR));
 
-await $write("index", schema)
+await $write("index", schema);
 for (const key in schema.definitions) {
-    await $write(key, schema.definitions[key])
+  await $write(key, schema.definitions[key]);
 }

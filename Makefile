@@ -21,5 +21,8 @@ test:
 test-remote:
 	deno test --allow-read scripts/test.js remote=true
 
+example-deno:
+	deno run --allow-read scripts/example_deno.js
+
 fmt:
-	deno fmt *.js
+	deno fmt **/*.js

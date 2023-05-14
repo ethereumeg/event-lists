@@ -1,19 +1,3 @@
-# event-lists
-
-📚 The Event Lists specification
-
-## Schema
-
-* https://event-lists.ethevents.club/schema/
-
-## Javascript/Typescript module
-
-### Deno
-
-* https://deno.land/x/event_lists
-
-#### Deno example
-```js
 import Ajv from "https://esm.sh/v114/ajv@8.12.0";
 import addFormats from "https://esm.sh/ajv-formats@2.1.1";
 import { parse as yamlParse } from "https://deno.land/std@0.187.0/yaml/mod.ts";
@@ -32,5 +16,3 @@ if (!validate(list)) {
 }
 
 console.log("Event List valid");
-
-```

@@ -6,8 +6,8 @@ import { schema } from "https://deno.land/x/event_lists@0.0.4-1/mod.ts";
 const ajv = new Ajv({ strict: false });
 addFormats(ajv);
 const validate = ajv.compile(schema);
-
-const LIST_YAML_FILE = "./examples/minimal.yaml";
+/*
+const LIST_YAML_FILE = "./src/examples/minimal.yaml";
 
 const list = yamlParse(await Deno.readTextFile(LIST_YAML_FILE));
 
@@ -16,3 +16,4 @@ if (!validate(list)) {
 }
 
 console.log("Event List valid");
+*/

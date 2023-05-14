@@ -6,7 +6,7 @@ install:
 	deno cache *.ts scripts/*.js scripts/*.ts
 
 mod:
-	deno run --allow-read mod.js
+	deno run --allow-read mod.ts
 
 build:
 	deno run --allow-read --allow-write scripts/build.js

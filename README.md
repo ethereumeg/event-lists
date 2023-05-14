@@ -5,3 +5,7 @@
 ## Schema
 
 * https://event-lists.ethevents.club/schema/
+
+## Deno module
+
+* https://deno.land/x/event_lists

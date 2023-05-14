@@ -33,3 +33,7 @@ if (!validate(list)) {
 
 console.log("Event List valid");
 ```
+
+## License
+
+MIT

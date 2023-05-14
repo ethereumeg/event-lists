@@ -10,7 +10,7 @@
 
 | Name    | Example                                                                  |
 | ------- | ------------------------------------------------------------------------ |
-| minimal | [minimal.json](https://events-list.ethevents.club/examples/minimal.json) |
+| minimal | [minimal.json](https://event-lists.ethevents.club/examples/minimal.json) |
 
 ## Javascript/Typescript module
 

@@ -2,7 +2,7 @@ import { parse } from "https://deno.land/std@0.187.0/yaml/mod.ts";
 import { join } from "https://deno.land/std@0.187.0/path/posix.ts";
 
 const SCHEMA_DIR = "./schema";
-const VERSION = "0.0.1";
+const VERSION = "0.0.3";
 const $schemaUrl = (key = "index") =>
   `https://event-lists.ethevents.club/schema/${key}.json`;
 

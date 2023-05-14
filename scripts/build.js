@@ -6,9 +6,16 @@ import { schema, VERSION } from "../mod.js";
 const OUTPUT_DIR = "./dist";
 const SCHEMA_DIR = "schema";
 
+async function $write(key, data) {
+    const fn = join(OUTPUT_DIR, SCHEMA_DIR, key + ".json")
+    await Deno.writeTextFile(fn, JSON.stringify(data, null, 2))
+    console.log(`File written: ${fn}`)
+}
+
 await emptyDir(OUTPUT_DIR);
 await emptyDir(join(OUTPUT_DIR, SCHEMA_DIR));
 
-const bundleFn = join(OUTPUT_DIR, SCHEMA_DIR, "index.json")
-await Deno.writeTextFile(bundleFn, JSON.stringify(schema, null, 2))
-console.log(`File written: ${bundleFn}`)
+await $write("index", schema)
+for (const key in schema.definitions) {
+    await $write(key, schema.definitions[key])
+}

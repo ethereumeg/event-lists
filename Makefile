@@ -28,4 +28,4 @@ example-deno:
 	deno run --allow-read scripts/example_deno.js
 
 fmt:
-	deno fmt **/*.js
+	deno fmt **/*.js *.md

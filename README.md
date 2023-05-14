@@ -4,15 +4,22 @@
 
 ## Schema
 
-* https://event-lists.ethevents.club/schema/
+- https://event-lists.ethevents.club/schema/
+
+## Examples of Event Lists
+
+| Name    | Example                                                                  |
+| ------- | ------------------------------------------------------------------------ |
+| minimal | [minimal.json](https://events-list.ethevents.club/examples/minimal.json) |
 
 ## Javascript/Typescript module
 
 ### Deno
 
-* https://deno.land/x/event_lists
+- https://deno.land/x/event_lists
 
 #### Deno example
+
 ```js
 import Ajv from "https://esm.sh/v114/ajv@8.12.0";
 import addFormats from "https://esm.sh/ajv-formats@2.1.1";

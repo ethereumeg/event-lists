@@ -6,7 +6,7 @@ import addFormats from "https://esm.sh/ajv-formats@2.1.1";
 
 import { schema, VERSION } from "../mod.ts";
 
-const EXAMPLES_DIR = "./examples";
+const EXAMPLES_DIR = "./src/examples";
 
 console.log(`Schema version: ${VERSION}`);
 

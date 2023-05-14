@@ -1,4 +1,4 @@
-import { parse } from "https://deno.land/std@0.184.0/yaml/mod.ts";
+import { parse } from "https://deno.land/std@0.187.0/yaml/mod.ts";
 import { join } from "https://deno.land/std@0.187.0/path/posix.ts";
 
 const SCHEMA_DIR = "./schema";

@@ -12,5 +12,5 @@ properties:
   events:
     type: array
     items:
-      $ref: "https://event-lists.ethevents.club/schema/event.json"
+      $ref: "https://event-lists.ethevents.club/0.1/schema/event.json"
 definitions: {}

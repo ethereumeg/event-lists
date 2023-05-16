@@ -1,27 +1,36 @@
 import { parse } from "https://deno.land/std@0.187.0/yaml/mod.ts";
-import { join } from "https://deno.land/std@0.187.0/path/posix.ts";
+import { join, basename } from "https://deno.land/std@0.187.0/path/posix.ts";
 
-const SCHEMA_DIR = "./src/schema";
+const SOURCE_DIR = "./src";
+const SCHEMA_DIR = "schema";
+
 const VERSION = "0.0.4";
-const $schemaUrl = (key = "index"): string =>
-  `https://event-lists.ethevents.club/schema/${key}.json`;
+const $schemaUrl = (revision: string, key = "index"): string =>
+  `https://event-lists.ethevents.club/${revision}/schema/${key}.json`;
 
-function $schema(name = "index"): any {
-  return parse(Deno.readTextFileSync(join(SCHEMA_DIR, name + ".yaml")));
+function $schema(revision: string, name = "index"): any {
+  return parse(Deno.readTextFileSync(join(SOURCE_DIR, revision, SCHEMA_DIR, name + ".yaml")));
 }
 
-const schema: any = Object.assign({ $id: $schemaUrl() }, $schema());
-for (const f of Deno.readDirSync(SCHEMA_DIR)) {
-  const match = f.name.match(/^(.*)\.yaml$/);
-  if (!match) continue;
-  const key = match[1];
-  if (key === "index") {
-    continue;
+// collection available revisions
+const revisions: { [key: string]: any } = {};
+for (const rd of Deno.readDirSync(SOURCE_DIR)) {
+  const rev = basename(rd.name);
+  const current: any = Object.assign({ $id: $schemaUrl(rev, "index") }, $schema(rev));
+  for (const f of Deno.readDirSync(join(SOURCE_DIR, rev, SCHEMA_DIR))) {
+    const key = (f.name.match(/^(.*)\.yaml$/) || [])[1];
+    if (!key) continue;
+    if (key === "index") {
+      continue;
+    }
+    current["definitions"][key] = Object.assign(
+      { $id: $schemaUrl(rev, key) },
+      $schema(rev, key),
+    );
   }
-  schema["definitions"][key] = Object.assign(
-    { $id: $schemaUrl(key) },
-    $schema(key),
-  );
+  revisions[rev] = current;
 }
 
-export { schema, VERSION };
+const schema = revisions[revisions.length-1];
+
+export { schema, VERSION, revisions };

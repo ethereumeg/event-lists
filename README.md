@@ -4,13 +4,13 @@
 
 ## Schema
 
-- https://event-lists.ethevents.club/schema/
+- https://event-lists.ethevents.club/0.1/schema/
 
 ## Examples of Event Lists
 
-| Name    | Example                                                                                                                                                            |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| minimal | [YAML](https://raw.githubusercontent.com/ethereumeg/event-lists/main/src/examples/minimal.yaml) / [JSON](https://event-lists.ethevents.club/examples/minimal.json) |
+| Name    | Example                                                                                                                                                                    |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| minimal | [YAML](https://raw.githubusercontent.com/ethereumeg/event-lists/main/src/0.1/examples/minimal.yaml) / [JSON](https://event-lists.ethevents.club/0.1/examples/minimal.json) |
 
 ## Javascript/Typescript module
 

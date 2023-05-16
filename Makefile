@@ -29,3 +29,6 @@ example-deno:
 
 fmt:
 	deno fmt **/*.js *.md
+
+simple:
+	deno run --allow-read scripts/simple.js

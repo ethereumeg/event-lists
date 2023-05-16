@@ -3,8 +3,8 @@ import { join, basename } from "https://deno.land/std@0.187.0/path/posix.ts";
 
 const SOURCE_DIR = "./src";
 const SCHEMA_DIR = "schema";
+export const VERSION = "0.0.4";
 
-const VERSION = "0.0.4";
 const $schemaUrl = (revision: string, key = "index"): string =>
   `https://event-lists.ethevents.club/${revision}/schema/${key}.json`;
 
@@ -13,7 +13,7 @@ function $schema(revision: string, name = "index"): any {
 }
 
 // collection available revisions
-const revisions: { [key: string]: any } = {};
+export const revisions: { [key: string]: any } = {};
 for (const rd of Deno.readDirSync(SOURCE_DIR)) {
   const rev = basename(rd.name);
   const current: any = Object.assign({ $id: $schemaUrl(rev, "index") }, $schema(rev));
@@ -31,6 +31,7 @@ for (const rd of Deno.readDirSync(SOURCE_DIR)) {
   revisions[rev] = current;
 }
 
-const schema = revisions[revisions.length-1];
+const revisionIndex = Object.keys(revisions)
 
-export { schema, VERSION, revisions };
+export const revision = revisionIndex[revisionIndex.length-1];
+export const schema = revisions[revision];
